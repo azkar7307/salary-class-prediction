@@ -13,7 +13,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from dataclasses import dataclass
-from src.pipeline.utils import save_object
+from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
@@ -97,7 +97,7 @@ class DataTransformation:
             logging.info('Outliers capped on test data')
                 
             preprocess_obj = self.get_data_transformation_obj()
-            logging.info('Data Transformation initiated')
+            # logging.info('Data Transformation initiated')
 
             target_columns = 'income'
             drop_columns = [target_columns]
@@ -120,13 +120,13 @@ class DataTransformation:
 
             # Apply preprocessor  object on our train data and test data
             train_array = np.c_[input_train_arr, np.array(target_feature_train_data)]
-            logging.info('In train np_c')
+            # logging.info('In train np_c')
             test_array = np.c_[input_test_arr, np.array(target_feature_test_data)]
-            logging.info('In test np_c')
+            # logging.info('In test np_c')
 
             save_object(file_path=self.data_transformation_config.preprocess_obj_file_path, 
                             obj=preprocess_obj)
-            logging.info('Object saved')
+            logging.info('Data Transformation Object saved')
 
             return (train_array, 
                         test_array,
