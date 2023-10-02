@@ -21,11 +21,11 @@ class PredictionPipeline:
         model_path = os.path.join('artifacts/model_trainer', 'model.pkl')
 
         preprocessor = load_object(preprocessor_path)
-        model = load_object(preprocessor_path)
+        model = load_object(model_path)
 
         scaled = preprocessor.transform(features)
         pred = model.predict(scaled)
-
+        logging.info(pred)
         return pred
 
 
